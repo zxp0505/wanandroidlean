@@ -4,6 +4,7 @@ import 'package:wanandroidlearn/model/hirobumiitemmodel.dart';
 import 'package:wanandroidlearn/network/netreqeuest.dart';
 import 'package:wanandroidlearn/weight/loadingtext.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:wanandroidlearn/moudle/hirobumi/hirobumidetail.dart';
 
 /**
  * 博文
@@ -59,7 +60,10 @@ class _HirobumiPageState extends State<HirobumiPage> {
 
   getItem(HiroBumiItemModel item) {
     return   GestureDetector(onTap: (){
-      Fluttertoast.showToast(msg: item.title,gravity: ToastGravity.CENTER,backgroundColor: Colors.amberAccent);
+      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+        return HirobumiDetail(item);
+      }));
+//      Fluttertoast.showToast(msg: item.title,gravity: ToastGravity.CENTER,backgroundColor: Colors.amberAccent);
     } ,child: Card(
       color: Colors.blue,
       margin: EdgeInsets.all(10),
