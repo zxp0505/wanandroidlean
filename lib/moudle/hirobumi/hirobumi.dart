@@ -3,6 +3,7 @@ import 'package:wanandroidlearn/model/hirobumimodel.dart';
 import 'package:wanandroidlearn/model/hirobumiitemmodel.dart';
 import 'package:wanandroidlearn/network/netreqeuest.dart';
 import 'package:wanandroidlearn/weight/loadingtext.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /**
  * 博文
@@ -43,7 +44,7 @@ class _HirobumiPageState extends State<HirobumiPage> {
     var listView = ListView.builder(
         itemCount: _datas.length,
         itemBuilder: (BuildContext context, int index) {
-         return getItem(_datas[index]);
+          return getItem(_datas[index]);
         });
     return new Center(
       child: listView,
@@ -57,14 +58,31 @@ class _HirobumiPageState extends State<HirobumiPage> {
   }
 
   getItem(HiroBumiItemModel item) {
-    return new Column(
-      children: <Widget>[
-        Text(item.title),
-        Row(
-          children: <Widget>[Text(item.superChapterName), Text(item.author)],
-        )
-      ],
-    );
+    return   GestureDetector(onTap: (){
+      Fluttertoast.showToast(msg: item.title,gravity: ToastGravity.CENTER,backgroundColor: Colors.amberAccent);
+    } ,child: Card(
+      color: Colors.blue,
+      margin: EdgeInsets.all(10),
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+            child: Text(item.title,style: TextStyle(fontSize: 18,color: Colors.deepPurple),),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+            child: Row(
+              children: <Widget>[
+                Text(item.superChapterName,),
+                Text(item.author)
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),);
+
   }
 
   void getdata() {
