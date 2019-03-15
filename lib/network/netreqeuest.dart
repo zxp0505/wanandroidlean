@@ -10,9 +10,9 @@ class NetRequest {
   String hirobumiurl = 'http://www.wanandroid.com/article/list/0/json';
   String systemurl = 'https://www.wanandroid.com/tree/json'; //体系结构
 
-  void getHirobumi(Function callback) async {
+  void getHirobumi(int page,Function callback) async {
     Dio dio = Dio();
-    Response response = await dio.get(hirobumiurl) as Response;
+    Response response = await dio.get('http://www.wanandroid.com/article/list/${page}/json') as Response;
     print(response.data.toString());
     callback(HiroBumiModel.fromJson(response.data));
   }
